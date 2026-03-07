@@ -146,3 +146,13 @@ INSERT INTO Objeto (id_objeto, nombre, receta, origen, apilable) VALUES ('97','d
 INSERT INTO Objeto (id_objeto, nombre, receta, origen, apilable) VALUES ('98','diamond_chestplate','1','crear','0');
 INSERT INTO Objeto (id_objeto, nombre, receta, origen, apilable) VALUES ('99','diamond_leggings','1','crear','0');
 INSERT INTO Objeto (id_objeto, nombre, receta, origen, apilable) VALUES ('100','diamond_boots','1','crear','0');
+
+
+-- SANDRA ----------------------------------------
+
+JUGADOR:
+
+
+
+INVENTARIO:
+
