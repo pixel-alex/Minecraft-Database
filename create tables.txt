@@ -72,7 +72,7 @@ CREATE TABLE Herramienta (
 CREATE TABLE Herramienta_Bloque (
     id_herramienta INTEGER NOT NULL,
     id_bloque INTEGER NOT NULL,
-    ventaja INTEGER NOT NULL,
+    ventaja TEXT NOT NULL,
     PRIMARY KEY (id_herramienta, id_bloque),
     FOREIGN KEY (id_bloque) REFERENCES Bloque(id_bloque),
     FOREIGN KEY (id_herramienta) REFERENCES Herramienta(id_herramienta)
