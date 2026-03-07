@@ -28,7 +28,7 @@ CREATE TABLE Escenario (
     tipo TEXT NOT NULL
 );
 
-CREATE TABLE Criatura_Escenario(
+CREATE TABLE Criatura_Escenario (
     id_criatura INTEGER NOT NULL,
     id_escenario INTEGER NOT NULL,
     ratio_aparicion REAL NOT NULL,
@@ -44,8 +44,6 @@ CREATE TABLE Criatura (
     vida INTEGER NOT NULL,
     distancia_ataque INTEGER,
     interaccion_pasiva INTEGER NOT NULL DEFAULT 0 CHECK (interaccion_pasiva >= 0 AND interaccion_pasiva <= 1),
-    escenario_tipo TEXT NOT NULL,
-    FOREIGN KEY (escenario_tipo) REFERENCES Escenario(tipo)
 ); 
 
 CREATE TABLE Criatura_Objeto (
