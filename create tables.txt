@@ -28,35 +28,26 @@ CREATE TABLE Escenario (
     tipo TEXT NOT NULL
 );
 
-CREATE TABLE Criatura_Escenario(
-    id_criatura INTEGER NOT NULL,
-    id_escenario INTEGER NOT NULL,
-    ratio_aparicion REAL NOT NULL,
-    PRIMARY KEY (id_criatura, id_escenario),
-    FOREIGN KEY (id_criatura) REFERENCES Criatura(id_criatura),
-    FOREIGN KEY (id_escenario) REFERENCES Escenario(id_escenario)
-);
-
 CREATE TABLE Criatura (
     id_criatura INTEGER PRIMARY KEY,
     nombre TEXT NOT NULL,
-    objeto TEXT NOT NULL,
+    ratio_aparicion REAL,
     vida INTEGER NOT NULL,
     distancia_ataque INTEGER,
-    interaccion_pasiva INTEGER NOT NULL DEFAULT 0 CHECK(interaccion_pasiva IN (0,1)),
+    interaccion_pasiva INTEGER NOT NULL DEFAULT 0 CHECK(interaccion_pasiva IN (0,1))
     escenario_tipo TEXT NOT NULL,
-    FOREIGN KEY (escenario_tipo) REFERENCES Escenario(tipo)
+    FOREIGN KEY (escenario_tipo) REFERENCES escenarios(tipo)
 ); 
 
-CREATE TABLE Criatura_Objeto (
-    id_criatura INTEGER NOT NULL,
-    id_objeto INTEGER NOT NULL,
-    cantidad_min INTEGER NOT NULL,
-    cantidad_max INTEGER NOT NULL,
-    PRIMARY KEY (id_criatura , id_objeto),
-    FOREIGN KEY (id_criatura) REFERENCES Criatura(id_criatura),
-    FOREIGN KEY (id_objeto) REFERENCES Objeto(id_objeto)
+CREATE TABLE Escenario_Criatura (
+    id_escenario INTEGER,
+    id_criatura INTEGER,
+    ratio_aparicion REAL NOT NULL,
+    PRIMARY KEY (id_escenario, id_criatura),
+    FOREIGN KEY (id_criatura) REFERENCES criatura(id_criatura),
+    FOREIGN KEY (id_escenario) REFERENCES escenario(id_escenario)
 );
+
 -- ALEXIA ----------------------------------------
 
 CREATE TABLE Herramienta (
