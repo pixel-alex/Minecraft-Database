@@ -118,7 +118,7 @@ CREATE TABLE Inventario (
 id_inventario INTEGER PRIMARY KEY,
 capacidad INTEGER NOT NULL, 
 obj_activo TEXT NOT NULL, 
-cantidad_obj INTEGER NOT NULL CHECK(cantidad_obj IN (0, 64))
+cantidad_obj INTEGER NOT NULL CHECK(cantidad_obj>0 AND cantidad_obj<64))
 );
 
 CREATE TABLE Jugador_Encantamiento (
