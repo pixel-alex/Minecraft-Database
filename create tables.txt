@@ -17,7 +17,7 @@ CREATE TABLE Objeto (
     receta TEXT,
     origen TEXT,
     apilable INTEGER NOT NULL
-    CHECK(apilable IN (0,1))
+    CHECK(apilable>=0 AND apilable<=1))
 );
 
 -- AXLIN ----------------------------------------
@@ -83,7 +83,7 @@ CREATE TABLE Bloque (
     nombre TEXT NOT NULL UNIQUE,
     objeto TEXT NOT NULL,
     resistencia INTEGER NOT NULL,
-    gravedad INTEGER NOT NULL CHECK(gravedad>0 AND gravedad<1)
+    gravedad INTEGER NOT NULL CHECK(gravedad>=0 AND gravedad<=1)
 );
 
 CREATE TABLE Escenario_Bloque (
@@ -109,8 +109,8 @@ CREATE TABLE Bloque_Objeto (
 
 CREATE TABLE Jugador (
 id_jugador INTEGER PRIMARY KEY,
-vida INTEGER NOT NULL CHECK(vida>0 AND vida<40),
-hambre INTEGER NOT NULL CHECK(hambre>0 AND hambre<20),
+vida INTEGER NOT NULL CHECK(vida>=0 AND vida<=40),
+hambre INTEGER NOT NULL CHECK(hambre>=0 AND hambre<=20),
 experiencia INTEGER NOT NULL
 );
 
@@ -118,7 +118,7 @@ CREATE TABLE Inventario (
 id_inventario INTEGER PRIMARY KEY,
 capacidad INTEGER NOT NULL, 
 obj_activo TEXT NOT NULL, 
-cantidad_obj INTEGER NOT NULL CHECK(cantidad_obj>0 AND cantidad_obj<64))
+cantidad_obj INTEGER NOT NULL CHECK(cantidad_obj>=0 AND cantidad_obj<=64))
 );
 
 CREATE TABLE Jugador_Encantamiento (
