@@ -1,0 +1,127 @@
+-- CREATE TABLES
+
+-- PASCU ----------------------------------------
+
+CREATE TABLE Encantamiento (
+    id_encantamiento INTEGER PRIMARY KEY,
+    nombre TEXT NOT NULL,
+    tipo TEXT NOT NULL,
+    nivel INTEGER NOT NULL,
+    coste_xp INTEGER NOT NULL,
+    ventaja TEXT 
+);
+
+CREATE TABLE Objeto (
+    id_objeto INTEGER PRIMARY KEY,
+    nombre TEXT NOT NULL,
+    receta TEXT,
+    origen TEXT,
+    apilable INTEGER NOT NULL
+    CHECK(apilable IN (0,1))
+);
+
+-- AXLIN ----------------------------------------
+
+CREATE TABLE escenario (
+    id_escenario INTEGER PRIMARY KEY,
+    nombre TEXT NOT NULL,
+    tipo TEXT NOT NULL
+);
+
+CREATE TABLE criatura (
+    id_criatura INTEGER PRIMARY KEY,
+    nombre TEXT NOT NULL,
+    ratio_aparicion REAL,
+    vida INTEGER NOT NULL,
+    distancia_ataque INTEGER,
+    interaccion_pasiva INTEGER NOT NULL DEFAULT 0 CHECK(interaccion_pasiva IN (0,1))
+    escenario_tipo TEXT NOT NULL,
+    FOREIGN KEY (escenario_tipo) REFERENCES escenarios(tipo)
+); 
+
+CREATE TABLE escenario_criatura (
+    id_escenario INTEGER,
+    id_criatura INTEGER,
+    ratio_aparicion REAL NOT NULL,
+    PRIMARY KEY (id_escenario, id_criatura),
+    FOREIGN KEY (id_criatura) REFERENCES criatura(id_criatura),
+    FOREIGN KEY (id_escenario) REFERENCES escenario(id_escenario)
+);
+
+-- ALEXIA ----------------------------------------
+
+CREATE TABLE Herramienta (
+    id_herramienta INTEGER PRIMARY KEY,
+    nombre TEXT NOT NULL,
+    material TEXT NOT NULL,
+    durabilidad INTEGER NOT NULL,
+    dano INTEGER NOT NULL
+);
+
+Herramienta_Bloque:
+
+CREATE TABLE Herramienta_Bloque (
+    id_herramienta INTEGER NOT NULL,
+    id_bloque INTEGER NOT NULL,
+    eficiencia INTEGER NOT NULL,
+    PRIMARY KEY (id_herramienta, id_bloque),
+    FOREIGN KEY (id_bloque) REFERENCES Bloque(id_bloque),
+    FOREIGN KEY (id_herramienta) REFERENCES Herramienta(id_herramienta)
+);
+
+Bloque:
+
+CREATE TABLE Bloque (
+    id_bloque INTEGER PRIMARY KEY,
+    nombre TEXT NOT NULL UNIQUE,
+    objeto TEXT NOT NULL,
+    resistencia INTEGER NOT NULL,
+    gravedad INTEGER NOT NULL CHECK(gravedad IN (0,1))
+);
+
+Escenario_Bloque:
+
+CREATE TABLE Escenario_Bloque (
+    id_escenario INTEGER,
+    id_bloque INTEGER,
+    ratio_aparicion REAL NOT NULL,
+    PRIMARY KEY (id_escenario, id_bloque),
+    FOREIGN KEY (id_bloque) REFERENCES Bloque(id_bloque),
+    FOREIGN KEY (id_escenario) REFERENCES Escenario(id_escenario)
+);
+
+Bloque_Objeto:
+
+CREATE TABLE Bloque_Objeto (
+    id_bloque INTEGER,
+    id_objeto INTEGER,
+    cantidad_min INTEGER NOT NULL,
+    cantidad_max INTEGER NOT NULL,
+    PRIMARY KEY (id_bloque, id_objeto),
+    FOREIGN KEY (id_bloque) REFERENCES Bloque(id_bloque),
+    FOREIGN KEY (id_objeto) REFERENCES Objeto(id_objeto)
+);
+
+-- SANDRA ----------------------------------------
+
+CREATE TABLE Jugador (
+id_jugador INTEGER PRIMARY KEY,
+vida INTEGER NOT NULL CHECK(vida IN(0, 40)),
+hambre INTEGER NOT NULL CHECK(hambre IN(0, 20)),
+experiencia INTEGER NOT NULL
+);
+
+CREATE TABLE Inventario (
+id_inventario INTEGER PRIMARY KEY,
+capacidad INTEGER NOT NULL, 
+obj_activo TEXT NOT NULL, 
+cantidad_obj INTEGER NOT NULL CHECK(cantidad_obj IN (0, 64))
+);
+
+CREATE TABLE Jugador_Encantamiento (
+id_jugador INTEGER NOT NULL, 
+id_encantamiento INTEGER NOT NULL, 
+PRIMARY KEY (id_jugador, id_encantamiento), 
+FOREIGN KEY (id_jugador) REFERENCES Jugador(id_jugador),
+FOREIGN KEY (id_encantamiento) REFERENCES Encantamiento(id_encantamiento)
+);
