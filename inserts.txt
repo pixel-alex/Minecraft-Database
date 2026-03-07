@@ -2,6 +2,8 @@
 
 -- PASCU ----------------------------------------
 
+ENCANTAMIENTO:
+
 INSERT INTO Encantamiento (id_encantamiento, nombre, tipo, nivel, coste_xp, ventaja) VALUES ('1','mending','Encantamiento',1,23,'');
 INSERT INTO Encantamiento (id_encantamiento, nombre, tipo, nivel, coste_xp, ventaja) VALUES ('2','unbreaking','Encantamiento',3,41,'Armadura');
 INSERT INTO Encantamiento (id_encantamiento, nombre, tipo, nivel, coste_xp, ventaja) VALUES ('3','protection','Encantamiento',4,15,'Armadura');
@@ -45,6 +47,8 @@ INSERT INTO Encantamiento (id_encantamiento, nombre, tipo, nivel, coste_xp, vent
 INSERT INTO Encantamiento (id_encantamiento, nombre, tipo, nivel, coste_xp, ventaja) VALUES ('41','lure','Encantamiento',3,27,'Caña');
 INSERT INTO Encantamiento (id_encantamiento, nombre, tipo, nivel, coste_xp, ventaja) VALUES ('42','curse_of_binding','Maldición',1,41,'');
 INSERT INTO Encantamiento (id_encantamiento, nombre, tipo, nivel, coste_xp, ventaja) VALUES ('43','curse_of_vanishing','Maldición',1,34,'');
+
+OBJETO:
 
 INSERT INTO Objeto (id_objeto, nombre, receta, origen, apilable) VALUES ('1','apple','0','escenario','1');
 INSERT INTO Objeto (id_objeto, nombre, receta, origen, apilable) VALUES ('2','arrow','1','criatura','1');
