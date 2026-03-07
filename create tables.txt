@@ -54,8 +54,9 @@ CREATE TABLE Herramienta (
     id_herramienta INTEGER PRIMARY KEY,
     nombre TEXT NOT NULL,
     material TEXT NOT NULL,
-    durabilidad INTEGER NOT NULL,
-    dano INTEGER NOT NULL
+    dano INTEGER NOT NULL,
+    encantada TEXT NOT NULL,
+    durabilidad INTEGER NOT NULL
 );
 
 CREATE TABLE Herramienta_Bloque (
