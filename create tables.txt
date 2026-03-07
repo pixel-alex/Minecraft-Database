@@ -83,7 +83,7 @@ CREATE TABLE Bloque (
     nombre TEXT NOT NULL UNIQUE,
     objeto TEXT NOT NULL,
     resistencia INTEGER NOT NULL,
-    gravedad INTEGER NOT NULL CHECK(gravedad IN (0,1))
+    gravedad INTEGER NOT NULL CHECK(gravedad>0 AND gravedad<1)
 );
 
 CREATE TABLE Escenario_Bloque (
