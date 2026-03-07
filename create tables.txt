@@ -99,8 +99,8 @@ CREATE TABLE Bloque_Objeto (
 
 CREATE TABLE Jugador (
 id_jugador INTEGER PRIMARY KEY,
-vida INTEGER NOT NULL CHECK(vida IN(0, 40)),
-hambre INTEGER NOT NULL CHECK(hambre IN(0, 20)),
+vida INTEGER NOT NULL CHECK(vida>0 AND vida<40),
+hambre INTEGER NOT NULL CHECK(hambre>0 AND hambre<20),
 experiencia INTEGER NOT NULL
 );
 
