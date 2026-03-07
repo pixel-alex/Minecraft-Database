@@ -22,13 +22,13 @@ CREATE TABLE Objeto (
 
 -- AXLIN ----------------------------------------
 
-CREATE TABLE escenario (
+CREATE TABLE Escenario (
     id_escenario INTEGER PRIMARY KEY,
     nombre TEXT NOT NULL,
     tipo TEXT NOT NULL
 );
 
-CREATE TABLE criatura (
+CREATE TABLE Criatura (
     id_criatura INTEGER PRIMARY KEY,
     nombre TEXT NOT NULL,
     ratio_aparicion REAL,
@@ -39,7 +39,7 @@ CREATE TABLE criatura (
     FOREIGN KEY (escenario_tipo) REFERENCES escenarios(tipo)
 ); 
 
-CREATE TABLE escenario_criatura (
+CREATE TABLE Escenario_Criatura (
     id_escenario INTEGER,
     id_criatura INTEGER,
     ratio_aparicion REAL NOT NULL,
@@ -58,18 +58,14 @@ CREATE TABLE Herramienta (
     dano INTEGER NOT NULL
 );
 
-Herramienta_Bloque:
-
 CREATE TABLE Herramienta_Bloque (
     id_herramienta INTEGER NOT NULL,
     id_bloque INTEGER NOT NULL,
-    eficiencia INTEGER NOT NULL,
+    ventaja INTEGER NOT NULL,
     PRIMARY KEY (id_herramienta, id_bloque),
     FOREIGN KEY (id_bloque) REFERENCES Bloque(id_bloque),
     FOREIGN KEY (id_herramienta) REFERENCES Herramienta(id_herramienta)
 );
-
-Bloque:
 
 CREATE TABLE Bloque (
     id_bloque INTEGER PRIMARY KEY,
@@ -79,22 +75,18 @@ CREATE TABLE Bloque (
     gravedad INTEGER NOT NULL CHECK(gravedad IN (0,1))
 );
 
-Escenario_Bloque:
-
 CREATE TABLE Escenario_Bloque (
-    id_escenario INTEGER,
-    id_bloque INTEGER,
+    id_escenario INTEGER NOT NULL,
+    id_bloque INTEGER NOT NULL,
     ratio_aparicion REAL NOT NULL,
     PRIMARY KEY (id_escenario, id_bloque),
     FOREIGN KEY (id_bloque) REFERENCES Bloque(id_bloque),
     FOREIGN KEY (id_escenario) REFERENCES Escenario(id_escenario)
 );
 
-Bloque_Objeto:
-
 CREATE TABLE Bloque_Objeto (
-    id_bloque INTEGER,
-    id_objeto INTEGER,
+    id_bloque INTEGER NOT NULL,
+    id_objeto INTEGER NOT NULL,
     cantidad_min INTEGER NOT NULL,
     cantidad_max INTEGER NOT NULL,
     PRIMARY KEY (id_bloque, id_objeto),
