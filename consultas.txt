@@ -1,0 +1,59 @@
+SELECT nombre, material, durabilidad
+FROM Herramienta
+WHERE durabilidad > 15
+ORDER BY durabilidad DESC;
+
+SELECT nombre, coste_xp
+FROM Encantamiento
+WHERE tipo = 'Maldición';
+
+SELECT nombre, resistencia
+FROM Bloque
+WHERE gravedad = 1;
+
+SELECT nombre, vida
+FROM Criatura
+WHERE vida BETWEEN 10 AND 30;
+
+SELECT c.nombre AS criatura,
+       o.nombre AS objeto,
+       co.cantidad_min,
+       co.cantidad_max
+FROM Criatura c
+JOIN Criatura_Objeto co ON c.id_criatura = co.id_criatura
+JOIN Objeto o ON co.id_objeto = o.id_objeto
+WHERE c.nombre = 'zombie';
+
+SELECT e.nombre AS escenario,
+       c.nombre AS criatura,
+       ec.ratio_aparicion
+FROM Escenario e
+JOIN Criatura_Escenario ec ON e.id_escenario = ec.id_escenario
+JOIN Criatura c ON ec.id_criatura = c.id_criatura
+WHERE e.nombre = 'swamp';
+
+SELECT b.nombre AS bloque,
+       o.nombre AS objeto
+FROM Bloque b
+LEFT JOIN Bloque_Objeto bo 
+       ON b.id_bloque = bo.id_bloque
+LEFT JOIN Objeto o 
+       ON bo.id_objeto = o.id_objeto;
+
+SELECT e.nombre,
+       COUNT(ec.id_criatura) AS total
+FROM Escenario e
+JOIN Escenario_Criatura ec 
+     ON e.id_escenario = ec.id_escenario
+GROUP BY e.id_escenario
+HAVING total > 3;
+
+
+SELECT e.nombre,
+       AVG(c.vida) AS vida_media
+FROM Escenario e
+JOIN Escenario_Criatura ec
+     ON e.id_escenario = ec.id_escenario
+JOIN Criatura c
+     ON ec.id_criatura = c.id_criatura
+GROUP BY e.id_escenario;
