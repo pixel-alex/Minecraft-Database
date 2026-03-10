@@ -244,7 +244,6 @@ INSERT INTO Jugador (id_jugador, vida, hambre, experiencia) VALUES ('98','21','3
 INSERT INTO Jugador (id_jugador, vida, hambre, experiencia) VALUES ('99','21','20','31');
 INSERT INTO Jugador (id_jugador, vida, hambre, experiencia) VALUES ('100','4','1','31');
 
-inserciones
 INSERT INTO Inventario (id_inventario, capacidad, obj_activo, cantidad_obj) VALUES ('1','36','apple','15');
 INSERT INTO Inventario (id_inventario, capacidad, obj_activo, cantidad_obj) VALUES ('2','36','arrow','23');
 INSERT INTO Inventario (id_inventario, capacidad, obj_activo, cantidad_obj) VALUES ('3','36','coal','33');
