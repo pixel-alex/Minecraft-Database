@@ -1,15 +1,15 @@
 CREATE TABLE Jugador (
-id_jugador INTEGER PRIMARY KEY,
-vida INTEGER NOT NULL CHECK(vida>=0 AND vida<=40),
-hambre INTEGER NOT NULL CHECK(hambre>=0 AND hambre<=20),
-experiencia INTEGER NOT NULL
+    id_jugador INTEGER PRIMARY KEY,
+    vida INTEGER NOT NULL CHECK(vida>=0 AND vida<=40),
+    hambre INTEGER NOT NULL CHECK(hambre>=0 AND hambre<=20),
+    experiencia INTEGER NOT NULL
 );
 
 CREATE TABLE Inventario (
-id_inventario INTEGER PRIMARY KEY,
-capacidad INTEGER NOT NULL, 
-obj_activo TEXT NOT NULL, 
-cantidad_obj INTEGER NOT NULL CHECK(cantidad_obj>=0 AND cantidad_obj<=64)
+    id_inventario INTEGER PRIMARY KEY,
+    capacidad INTEGER NOT NULL, 
+    obj_activo TEXT NOT NULL, 
+    cantidad_obj INTEGER NOT NULL CHECK(cantidad_obj>=0 AND cantidad_obj<=64)
 );
 
 CREATE TABLE Encantamiento (
@@ -63,11 +63,11 @@ CREATE TABLE Objeto (
 );
 
 CREATE TABLE Jugador_Encantamiento (
-id_jugador INTEGER NOT NULL, 
-id_encantamiento INTEGER NOT NULL, 
-PRIMARY KEY (id_jugador, id_encantamiento), 
-FOREIGN KEY (id_jugador) REFERENCES Jugador(id_jugador),
-FOREIGN KEY (id_encantamiento) REFERENCES Encantamiento(id_encantamiento)
+    id_jugador INTEGER NOT NULL, 
+    id_encantamiento INTEGER NOT NULL, 
+    PRIMARY KEY (id_jugador, id_encantamiento), 
+    FOREIGN KEY (id_jugador) REFERENCES Jugador(id_jugador),
+    FOREIGN KEY (id_encantamiento) REFERENCES Encantamiento(id_encantamiento)
 );
 
 CREATE TABLE Herramienta_Bloque (
@@ -76,6 +76,14 @@ CREATE TABLE Herramienta_Bloque (
     ventaja TEXT NOT NULL,
     PRIMARY KEY (id_herramienta, id_bloque),
     FOREIGN KEY (id_bloque) REFERENCES Bloque(id_bloque),
+    FOREIGN KEY (id_herramienta) REFERENCES Herramienta(id_herramienta)
+);
+
+CREATE TABLE Herramienta_Criatura (
+    id_herramienta INTEGER NOT NULL,
+    id_criatura INTEGER NOT NULL,
+    PRIMARY KEY (id_herramienta, id_criatura),
+    FOREIGN KEY (id_criatura) REFERENCES Criatura(id_criatura),
     FOREIGN KEY (id_herramienta) REFERENCES Herramienta(id_herramienta)
 );
 
